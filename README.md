@@ -1,6 +1,6 @@
-# Cosmic Reach Example Mod
+# Cosmic Reach Shader Loader
 
-A better mod example for Cosmic Reach Fabric mods
+Load shaders from ingame!
 
 ## Usage
 
