@@ -2,6 +2,7 @@ package net.ryzech.cosmicshaders;
 
 import finalforeach.cosmicreach.io.SaveLocation;
 import net.fabricmc.api.ModInitializer;
+import net.ryzech.cosmicshaders.utils.ShaderFileList;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,18 +21,11 @@ public class CosmicShaders implements ModInitializer {
         LOGGER.info("Cosmic Shaders Initialized");
 
         // make sure shader folder exists
-        File shaderDir = new File(SaveLocation.getSaveFolderLocation() + "/shaders");
+        File shaderDir = new File(SaveLocation.getSaveFolderLocation() + "/mods/shaders");
         if(shaderDir.exists()) {
             LOGGER.info("Shader Folder Found!");
-            try {
-                List<File> files = Files.list(Path.of(shaderDir.toURI()))
-                        .map(Path::toFile)
-                        .filter(File::isFile)
-                        .collect(Collectors.toList());
-
-                files.forEach(System.out::println);
-            } catch (IOException e) {
-                e.printStackTrace();
+            for (String shaderNames : ShaderFileList.getShaderFiles()) {
+                LOGGER.info(shaderNames);
             }
         } else {
             LOGGER.warning("Shader Folder Doesn't Exist. Creating now...");

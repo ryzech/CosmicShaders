@@ -8,11 +8,14 @@ import com.badlogic.gdx.graphics.g3d.utils.ShaderProvider;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import finalforeach.cosmicreach.gamestates.GameState;
+import finalforeach.cosmicreach.io.SaveLocation;
+import finalforeach.cosmicreach.rendering.shaders.GameShader;
 import finalforeach.cosmicreach.ui.UIElement;
+import net.ryzech.cosmicshaders.utils.ShaderFileList;
 
 public class ShaderSelectionScreen extends GameState {
     GameState previousState;
-    private String selectedShader = "base";
+    public static String selectedShader = "base";
     private Boolean inSubMenu = false;
     private SpriteBatch spriteBatch = new SpriteBatch();
     private Viewport uiViewport;
@@ -35,6 +38,20 @@ public class ShaderSelectionScreen extends GameState {
         returnToMenuButton.setText("Return to Main Menu");
         returnToMenuButton.show();
         this.uiElements.add(returnToMenuButton);
+
+        for(int i = 0; i < ShaderFileList.getShaderFiles().size(); i++) {
+            String path = ShaderFileList.getShaderFiles().get(i);
+            selectedShader = path;
+            UIElement shaderList = new UIElement(-405.0F, -270.0F + (i * 60), 250.0F, 50.0F) {
+                public void onClick() {
+                    super.onClick();
+                    GameShader newShader = new GameShader(path + "/vertex.glsl", path + "/fragment.glsl");
+                }
+            };
+            shaderList.setText(ShaderFileList.getShaderFiles().get(i));
+            shaderList.show();
+            this.uiElements.add(shaderList);
+        }
     }
 
     public void render() {
