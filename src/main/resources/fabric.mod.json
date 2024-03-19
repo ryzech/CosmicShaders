@@ -3,18 +3,19 @@
   "id": "${modid}",
   "version": "${version}",
   "name": "${mod_name}",
-  "description": "Fabric mod for Cosmic Reach!",
+  "description": "Shader Mod for Cosmic Reach. WIP",
   "authors": [
+    "RyzechDev"
   ],
-  "license": "CC0-1.0",
+  "license": "MIT",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.example.examplemod.ExampleMod"
+      "net.ryzech.cosmicshaders.CosmicShaders"
     ]
   },
   "mixins": [
-    "examplemod.mixins.json"
+    "cosmicshaders.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=${loader_version}",
